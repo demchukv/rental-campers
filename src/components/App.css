@@ -14,5 +14,5 @@ body {
   background-color: var(--color-page-bg);
   color: var(--color-text);
   font-family: var(--font-family);
-  padding-top: 90px;
+  padding-top: 100px;
 }
