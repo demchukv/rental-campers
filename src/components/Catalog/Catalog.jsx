@@ -18,7 +18,7 @@ const Catalog = () => {
         <section className={css.catalogBlock}>
           <ul className={css.catalogList}>
             {campersList.map(camper => (
-              <CatalogItem key={camper.id} {...camper} />
+              <CatalogItem key={camper._id} {...camper} />
             ))}
           </ul>
         </section>
