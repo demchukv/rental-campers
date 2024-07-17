@@ -20,7 +20,16 @@ const CatalogItem = props => {
           <h2 className={css.camperName}>{props.name}</h2>
           <div className={css.camperPrice}>
             <div>€{price}</div>
-            <div>icon</div>
+            <div>
+              <button type="button" className={css.favoriteButton}>
+                <Icon
+                  width={24}
+                  height={24}
+                  iconName="icon-heart-def"
+                  styles={css.iconFavorite}
+                />
+              </button>
+            </div>
           </div>
         </div>
         <div className={css.camperRate}>

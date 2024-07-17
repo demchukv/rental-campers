@@ -65,6 +65,18 @@
   height: 16px;
   fill: var(--color-text);
 }
+.favoriteButton {
+  border: none;
+  background: none;
+  padding: 2px;
+  cursor: pointer;
+  outline: none;
+}
+.iconFavorite {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-text);
+}
 .camperDecsription {
   max-width: 100%;
   font-weight: 400;
