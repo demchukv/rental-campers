@@ -3,9 +3,11 @@ import css from './CatalogItem.module.css';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
+import { firstToUpper } from '../../helpers/string';
 
 const CatalogItem = props => {
   const price = Number(props.price).toFixed(2);
+
   return (
     <div className={css.catalogItem}>
       <div className={css.imageContainer}>
@@ -32,21 +34,34 @@ const CatalogItem = props => {
             </div>
           </div>
         </div>
-        <div className={css.camperRate}>
-          {props.rating} ({props.reviews.length} Reviews){' '}
-          <Icon
-            width={16}
-            height={16}
-            iconName="icon-map-pin"
-            styles={css.iconLocation}
-          />
-          {props.location}
+        <div className={css.camperRateLoc}>
+          <div className={css.camperRate}>
+            <Icon
+              width={16}
+              height={16}
+              iconName="icon-star"
+              styles={css.iconStar}
+            />
+            <span className={css.reviewLink}>
+              {props.rating} ({props.reviews.length} Reviews)
+            </span>
+          </div>
+          <div className={css.camperRate}>
+            <Icon
+              width={16}
+              height={16}
+              iconName="icon-map-pin"
+              styles={css.iconLocation}
+            />
+
+            {props.location}
+          </div>
         </div>
         <div className={css.camperDecsription}>{props.description}</div>
         <div className={css.camperBadges}>
           <Badge icon="icon-people">{props.adults} adults</Badge>
-          <Badge icon="icon-engine">{props.transmission}</Badge>
-          <Badge icon="icon-petrol">{props.engine}</Badge>
+          <Badge icon="icon-engine">{firstToUpper(props.transmission)}</Badge>
+          <Badge icon="icon-petrol">{firstToUpper(props.engine)}</Badge>
           <Badge icon="icon-kitchen">Kitchen</Badge>
           <Badge icon="icon-bed">2 beds</Badge>
           <Badge icon="icon-electro">AC</Badge>

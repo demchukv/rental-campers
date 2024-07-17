@@ -51,6 +51,11 @@
   line-height: 1.25;
   color: var(--color-text);
 }
+.camperRateLoc {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
 .camperRate {
   display: flex;
   align-items: center;
@@ -59,6 +64,9 @@
   font-size: 16px;
   line-height: 1.5;
   margin-bottom: 24px;
+}
+.reviewLink {
+  text-decoration: underline;
 }
 .iconLocation {
   width: 16px;
@@ -76,6 +84,11 @@
   width: 24px;
   height: 24px;
   fill: var(--color-text);
+}
+.iconStar {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-star);
 }
 .camperDecsription {
   max-width: 100%;
