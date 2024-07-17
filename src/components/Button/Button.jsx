@@ -2,7 +2,11 @@ import css from './Button.module.css';
 import PropTypes from 'prop-types';
 
 const Button = ({ children, style }) => {
-  return <div>{children}</div>;
+  let btnStyle = css.button;
+  if (style === 'primary') {
+    btnStyle = css.primary;
+  }
+  return <div className={css[style]}>{children}</div>;
 };
 
 export default Button;

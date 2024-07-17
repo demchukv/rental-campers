@@ -4,7 +4,7 @@ import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 
 const CatalogItem = props => {
-  console.log(props);
+  const price = Number(props.price).toFixed(2);
   return (
     <div className={css.catalogItem}>
       <div className={css.imageContainer}>
@@ -18,7 +18,7 @@ const CatalogItem = props => {
         <div className={css.camperHead}>
           <h2 className={css.camperName}>{props.name}</h2>
           <div className={css.camperPrice}>
-            <div>€{props.price}</div>
+            <div>€{price}</div>
             <div>icon</div>
           </div>
         </div>
