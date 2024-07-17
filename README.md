@@ -1,8 +1,7 @@
-# React + Vite
+# Застосунок для компанії, що надає послуги оренди камперів в Україні
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+** Застосунок складається з 3х сторінок: **
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- домашня сторінка з загальним описом послуг, що надає компанія. Стилізація та оформлення на ваш розсуд.
+- сторінка, що містить каталог камперів різної комплектації, які користувач може фільтрувати за місцем знаходження, обладнанням та типом
+- сторінка з оголошеннями, які були додані користувачем в улюблені
