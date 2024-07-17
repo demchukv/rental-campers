@@ -1,4 +1,8 @@
 .badge {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
   border-radius: 100px;
   padding: 12px 18px;
   background: var(--color-badge);
@@ -9,4 +13,10 @@
   line-height: 1.25;
   text-align: center;
   color: var(--color-text);
+}
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--color-text);
+  /* stroke: var(--color-text); */
 }

@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import css from './CatalogItem.module.css';
 import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 
 const CatalogItem = props => {
   const price = Number(props.price).toFixed(2);
@@ -23,16 +24,23 @@ const CatalogItem = props => {
           </div>
         </div>
         <div className={css.camperRate}>
-          {props.rating} ({props.reviews.length} Reviews) {props.location}
+          {props.rating} ({props.reviews.length} Reviews){' '}
+          <Icon
+            width={16}
+            height={16}
+            iconName="icon-map-pin"
+            styles={css.iconLocation}
+          />
+          {props.location}
         </div>
         <div className={css.camperDecsription}>{props.description}</div>
         <div className={css.camperBadges}>
-          <Badge icon="test">{props.adults} adults</Badge>
-          <Badge icon="test">{props.transmission}</Badge>
-          <Badge icon="test">{props.engine}</Badge>
-          <Badge icon="test">Kitchen</Badge>
-          <Badge icon="test">2 beds</Badge>
-          <Badge icon="test">AC</Badge>
+          <Badge icon="icon-people">{props.adults} adults</Badge>
+          <Badge icon="icon-engine">{props.transmission}</Badge>
+          <Badge icon="icon-petrol">{props.engine}</Badge>
+          <Badge icon="icon-kitchen">Kitchen</Badge>
+          <Badge icon="icon-bed">2 beds</Badge>
+          <Badge icon="icon-electro">AC</Badge>
         </div>
         <Button style="primary">Show more</Button>
       </div>
