@@ -1,0 +1,38 @@
+.navPanel {
+  position: fixed;
+  top: 5px;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.navigation {
+  width: 1440px;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 20px var(--color-border);
+  border-radius: 15px;
+}
+
+.navItem {
+  display: inline-block;
+  padding: 15px 25px;
+  text-decoration: none;
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 20px;
+  transition: all 0.25s ease-in-out;
+}
+.navItem:hover {
+  background-color: var(--color-border);
+  color: var(--color-btn);
+}
+.current {
+  color: var(--color-btn);
+}

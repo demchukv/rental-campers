@@ -6,6 +6,7 @@
   --color-star: #ffc531;
   --color-badge: #f2f4f7;
   --color-field: #f7f7f7;
+  --color-border: rgba(16, 24, 40, 0.2);
   --font-family: 'Inter', sans-serif;
 }
 
@@ -13,4 +14,5 @@ body {
   background-color: var(--color-page-bg);
   color: var(--color-text);
   font-family: var(--font-family);
+  padding-top: 90px;
 }
