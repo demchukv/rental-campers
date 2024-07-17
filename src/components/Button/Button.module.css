@@ -1,7 +1,7 @@
 .primary {
   display: inline-block;
   border-radius: 200px;
-  padding: 16px 40px;
+  padding: 15px 40px;
   background: var(--color-btn);
 
   font-family: var(--font-family);
@@ -24,7 +24,7 @@
 .outlined {
   display: inline-block;
   border-radius: 200px;
-  padding: 16px 40px;
+  padding: 15px 40px;
   background: var(--color-page-bg);
 
   font-family: var(--font-family);

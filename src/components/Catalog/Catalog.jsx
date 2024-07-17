@@ -6,6 +6,7 @@ import {
 } from '../../store/camper/selectors';
 import { useSelector } from 'react-redux';
 import CatalogItem from '../CatalogItem/CatalogItem';
+import Button from '../Button/Button';
 
 const Catalog = () => {
   const campersList = useSelector(selectCampers);
@@ -21,6 +22,9 @@ const Catalog = () => {
               <CatalogItem key={camper._id} {...camper} />
             ))}
           </ul>
+          <div className={css.loadBtn}>
+            <Button style="outlined">Load more</Button>
+          </div>
         </section>
       )}
       {isError && (
