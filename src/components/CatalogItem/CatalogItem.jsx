@@ -8,6 +8,11 @@ import { firstToUpper } from '../../helpers/string';
 const CatalogItem = props => {
   const price = Number(props.price).toFixed(2);
 
+  const onClickFavorite = () => {
+    props.handleFavorite(props._id);
+    console.log(event.target);
+  };
+
   return (
     <div className={css.catalogItem}>
       <div className={css.imageContainer}>
@@ -23,7 +28,13 @@ const CatalogItem = props => {
           <div className={css.camperPrice}>
             <div>€{price}</div>
             <div>
-              <button type="button" className={css.favoriteButton}>
+              <button
+                type="button"
+                className={css.favoriteButton}
+                onClick={() => {
+                  onClickFavorite();
+                }}
+              >
                 <Icon
                   width={24}
                   height={24}
@@ -85,4 +96,6 @@ CatalogItem.propTypes = {
   transmission: PropTypes.string.isRequired,
   engine: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
+  _id: PropTypes.string.isRequired,
+  handleFavorite: PropTypes.func.isRequired,
 };

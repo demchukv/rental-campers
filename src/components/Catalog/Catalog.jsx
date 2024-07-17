@@ -7,11 +7,16 @@ import {
 import { useSelector } from 'react-redux';
 import CatalogItem from '../CatalogItem/CatalogItem';
 import Button from '../Button/Button';
+import Loader from '../Loader/Loader';
 
 const Catalog = () => {
   const campersList = useSelector(selectCampers);
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
+
+  const handleFavorite = _id => {
+    console.log(_id);
+  };
 
   return (
     <>
@@ -19,7 +24,11 @@ const Catalog = () => {
         <section className={css.catalogBlock}>
           <ul className={css.catalogList}>
             {campersList.map(camper => (
-              <CatalogItem key={camper._id} {...camper} />
+              <CatalogItem
+                key={camper._id}
+                {...camper}
+                handleFavorite={handleFavorite}
+              />
             ))}
           </ul>
           <div className={css.loadBtn}>
@@ -32,6 +41,7 @@ const Catalog = () => {
           Something went wrong. Please try again later. {isError}
         </div>
       )}
+      {isLoading && <Loader />}
     </>
   );
 };
