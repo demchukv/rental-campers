@@ -29,7 +29,8 @@ const camperSlice = createSlice({
     builder.addCase(getCampers.pending, handlePending);
     builder.addCase(getCampers.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.waterDaily = action.payload;
+      state.isError = null;
+      state.campers = action.payload;
     });
     builder.addCase(getCampers.rejected, handleRejected);
   },

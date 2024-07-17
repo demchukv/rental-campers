@@ -1,0 +1,13 @@
+.catalogBlock {
+  width: 888px;
+}
+
+.catalogList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}

@@ -15,7 +15,7 @@ import camperReducer from './camper/slice';
 const persistConfig = {
   key: 'camper',
   storage,
-  whiteList: [],
+  whiteList: ['filters'],
 };
 
 export const store = configureStore({

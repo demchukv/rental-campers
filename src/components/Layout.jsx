@@ -5,9 +5,11 @@ import Loader from './Loader/Loader';
 
 const Layout = ({ children }) => {
   return (
-    <Container>
-      <Suspense fallback={<Loader />}>{children}</Suspense>
-    </Container>
+    <>
+      <Container>
+        <Suspense fallback={<Loader />}>{children}</Suspense>
+      </Container>
+    </>
   );
 };
 
