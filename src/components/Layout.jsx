@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
 import { Suspense } from 'react';
 import Container from './Container/Container';
+import Loader from './Loader/Loader';
 
 const Layout = ({ children }) => {
   return (
     <Container>
-      <Suspense fallback={null}>{children}</Suspense>
+      <Suspense fallback={<Loader />}>{children}</Suspense>
     </Container>
   );
 };

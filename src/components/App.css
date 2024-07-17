@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Inter';
+  src: url(../assets/fonts/Inter-VariableFont_slntwght.ttf) format('ttf');
+  font-weight: 300;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: 'slnt' 0;
+}
+
+:root {
+  --color-page-bg: #fff;
+  --color-text: #101828;
+  --color-text-ligth: #475467;
+  --color-btn: #e44848;
+  --color-star: #ffc531;
+  --color-badge: #f2f4f7;
+  --color-field: #f7f7f7;
+  --font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--color-page-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+}
