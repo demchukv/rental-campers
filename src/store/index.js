@@ -18,15 +18,6 @@ const persistConfig = {
   whiteList: [],
 };
 
-export const initialState = {
-  auth: {},
-  user: {},
-  waterDayList: [],
-  waterMonthList: [],
-  isLoading: false,
-  error: null,
-};
-
 export const store = configureStore({
   reducer: {
     camper: persistReducer(persistConfig, camperReducer),
