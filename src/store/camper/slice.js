@@ -4,6 +4,7 @@ import { getCampers } from './operations.js';
 const initialState = {
   campers: [],
   filters: [],
+  favorites: [],
   isLoading: false,
   isError: null,
 };
