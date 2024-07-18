@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCampers } from './operations.js';
+import { getCampers, getFavorites } from './operations.js';
 
 const initialState = {
   campers: [],
-  filters: [],
+  filters: {},
   favorites: [],
   isLoading: false,
   isError: null,
@@ -34,6 +34,20 @@ const camperSlice = createSlice({
       state.campers = action.payload;
     });
     builder.addCase(getCampers.rejected, handleRejected);
+
+    builder.addCase(getFavorites.pending, handlePending);
+    builder.addCase(getFavorites.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isError = null;
+      if (state.favorites.includes(action.payload)) {
+        state.favorites = state.favorites.filter(
+          item => item !== action.payload
+        );
+      } else {
+        state.favorites.push(action.payload);
+      }
+    });
+    builder.addCase(getFavorites.rejected, handleRejected);
   },
 });
 

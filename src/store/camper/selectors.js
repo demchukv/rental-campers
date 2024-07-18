@@ -4,7 +4,10 @@ export const selectCampers = state => state.camper.campers;
 
 export const selectFilters = state => state.camper.filters;
 
-export const selectFavorites = state => state.camper.favorites;
+export const selectFavorites = state => {
+  state.camper.favorites;
+  console.log(state.camper.favorites);
+};
 
 export const selectIsLoading = state => state.camper.isLoading;
 

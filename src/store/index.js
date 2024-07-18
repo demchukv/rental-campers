@@ -16,6 +16,7 @@ const persistConfig = {
   key: 'camper',
   storage,
   whiteList: ['filters', 'favorites'],
+  blacklist: ['campers', 'isLoading', 'isError'],
 };
 
 export const store = configureStore({

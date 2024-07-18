@@ -18,10 +18,6 @@ const Catalog = () => {
   const [showLoadMore, setShowLoadMore] = useState(false);
   const [page, setPage] = useState(1);
 
-  const handleFavorite = _id => {
-    console.log(_id);
-  };
-
   const visibleItems = campersList.slice(0, LIMIT * page);
 
   useEffect(() => {
@@ -42,11 +38,7 @@ const Catalog = () => {
         <>
           <ul className={css.catalogList}>
             {visibleItems.map(camper => (
-              <CatalogItem
-                key={camper._id}
-                {...camper}
-                handleFavorite={handleFavorite}
-              />
+              <CatalogItem key={camper._id} {...camper} />
             ))}
           </ul>
           {showLoadMore && (

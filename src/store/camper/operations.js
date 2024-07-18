@@ -13,3 +13,14 @@ export const getCampers = createAsyncThunk(
     }
   }
 );
+
+export const getFavorites = createAsyncThunk(
+  'camper/favorites',
+  async (data, thunkAPI) => {
+    try {
+      return data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
+    }
+  }
+);

@@ -4,13 +4,15 @@ import Badge from '../Badge/Badge';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import { firstToUpper } from '../../helpers/string';
+import { getFavorites } from '../../store/camper/operations';
+import { useDispatch } from 'react-redux';
 
 const CatalogItem = props => {
+  const dispatch = useDispatch();
   const price = Number(props.price).toFixed(2);
 
-  const onClickFavorite = _id => {
-    props.handleFavorite(_id);
-    console.log(event.target);
+  const onClickFavorite = () => {
+    dispatch(getFavorites(props._id));
   };
 
   return (
@@ -32,7 +34,7 @@ const CatalogItem = props => {
                 type="button"
                 className={css.favoriteButton}
                 onClick={() => {
-                  onClickFavorite(props._id);
+                  onClickFavorite();
                 }}
               >
                 <Icon
@@ -97,5 +99,4 @@ CatalogItem.propTypes = {
   engine: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired,
-  handleFavorite: PropTypes.func.isRequired,
 };
