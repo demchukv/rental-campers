@@ -45,17 +45,17 @@ function filterCamper(item, filters) {
       if (key === 'kitchen') {
         matchEquipment = item.details[key] > 0 ? true : false;
       }
-      if (key === 'airConditioner') {
+      if (key === 'airConditioner' && matchEquipment) {
         matchEquipment = item.details[key] > 0 ? true : false;
       }
-      if (key === 'TV') {
+      if (key === 'TV' && matchEquipment) {
         matchEquipment = item.details[key] > 0 ? true : false;
       }
-      if (key === 'shower') {
+      if (key === 'shower' && matchEquipment) {
         matchEquipment =
           item.details[key] > 0 && item.details.toilet > 0 ? true : false;
       }
-      if (key === 'transmission') {
+      if (key === 'transmission' && matchEquipment) {
         matchEquipment = item[key] === 'automatic' ? true : false;
       }
       noEquipment = false;
