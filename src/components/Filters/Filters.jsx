@@ -3,6 +3,7 @@ import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 
 const Filters = () => {
+  
   const handleClick = () => {
     console.log(event.target.checked);
     console.log(event.target.name);

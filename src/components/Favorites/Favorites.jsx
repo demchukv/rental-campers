@@ -23,11 +23,18 @@ const Favorites = () => {
     <>
       {!isError && !isLoading && (
         <>
-          <ul className={css.catalogList}>
-            {favoriteList.map(camper => (
-              <CatalogItem key={camper._id} {...camper} />
-            ))}
-          </ul>
+          {favoriteList.length > 0 && (
+            <ul className={css.catalogList}>
+              {favoriteList.map(camper => (
+                <CatalogItem key={camper._id} {...camper} />
+              ))}
+            </ul>
+          )}
+          {favoriteList.length === 0 && (
+            <div className="errorMessage">
+              You do not have any favorites yet
+            </div>
+          )}
         </>
       )}
       {isError && (
