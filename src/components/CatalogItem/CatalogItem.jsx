@@ -83,12 +83,14 @@ const CatalogItem = props => {
         </div>
         <div className={css.camperDecsription}>{props.description}</div>
         <div className={css.camperBadges}>
-          <Badge icon="icon-people">{props.adults} adults</Badge>
-          <Badge icon="icon-engine">{firstToUpper(props.transmission)}</Badge>
-          <Badge icon="icon-petrol">{firstToUpper(props.engine)}</Badge>
+          <Badge icon="icon-adults">{props.adults} adults</Badge>
+          <Badge icon="icon-transmission">
+            {firstToUpper(props.transmission)}
+          </Badge>
+          <Badge icon="icon-engine">{firstToUpper(props.engine)}</Badge>
           <Badge icon="icon-kitchen">Kitchen</Badge>
-          <Badge icon="icon-bed">2 beds</Badge>
-          <Badge icon="icon-electro">AC</Badge>
+          <Badge icon="icon-beds">2 beds</Badge>
+          <Badge icon="icon-ac">AC</Badge>
         </div>
         <Button style="primary">Show more</Button>
       </div>

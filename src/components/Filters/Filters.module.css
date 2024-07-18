@@ -1,3 +1,70 @@
+.filterBlock {
+  margin-bottom: 32px;
+}
+.filterGroup {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--color-text);
+
+  border-bottom: 1px solid rgba(16, 24, 40, 0.1);
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  margin-top: 6px;
+}
+.locationLabel {
+  display: block;
+  margin-bottom: 8px;
+
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-label);
+}
+.locationIconContainer {
+  position: relative;
+}
+.iconLocation {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  transform: translate(0, -50%);
+  width: 24px;
+  height: 24px;
+  fill: var(--color-label);
+}
+.locationInput {
+  border-radius: 10px;
+  padding: 18px 18px 18px 44px;
+  background: var(--color-field);
+  border: 1px solid transparent;
+  outline: none;
+  width: 100%;
+
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: var(--color-label);
+}
+.locationInput:focus,
+.locationInput:active {
+  color: var(--color-text);
+}
+.locationInput:focus > .iconLocation,
+.locationInput:active > .iconLocation {
+  fill: var(--color-text);
+}
+.locationInput::placeholder {
+  color: var(--color-label);
+}
+
+.filters {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  column-gap: 10px;
+}
 /* Стилі для кнопок-чекбоксів */
 .checkboxButton {
   display: inline-block;
@@ -10,5 +77,8 @@
 
 /* Сховати оригінальний чекбокс */
 input[type='checkbox'] {
+  display: none;
+}
+input[type='radio'] {
   display: none;
 }
