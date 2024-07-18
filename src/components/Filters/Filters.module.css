@@ -1,6 +1,9 @@
 .filterBlock {
   margin-bottom: 32px;
 }
+.filterBlockMargin {
+  margin-bottom: 64px;
+}
 .filterGroup {
   font-weight: 600;
   font-size: 20px;

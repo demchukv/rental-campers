@@ -1,7 +1,12 @@
 import css from './Button.module.css';
 import PropTypes from 'prop-types';
 
-const Button = ({ children, style, type = 'button', handler = null }) => {
+const Button = ({
+  children,
+  style = 'primary',
+  type = 'button',
+  handler = null,
+}) => {
   return (
     <button className={css[style]} onClick={handler} type={type}>
       {children}

@@ -35,3 +35,14 @@ export const getFilters = createAsyncThunk(
     }
   }
 );
+
+export const getResetFilters = createAsyncThunk(
+  'camper/resetfilters',
+  async (data, thunkAPI) => {
+    try {
+      return data;
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.response.data.message || err.message);
+    }
+  }
+);

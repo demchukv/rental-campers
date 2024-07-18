@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getCampers, getFavorites, getFilters } from './operations.js';
+import {
+  getCampers,
+  getFavorites,
+  getFilters,
+  getResetFilters,
+} from './operations.js';
 
 const initialState = {
   campers: [],
@@ -59,6 +64,14 @@ const camperSlice = createSlice({
       };
     });
     builder.addCase(getFilters.rejected, handleRejected);
+
+    builder.addCase(getResetFilters.pending, handlePending);
+    builder.addCase(getResetFilters.fulfilled, state => {
+      state.isLoading = false;
+      state.isError = null;
+      state.filters = { location: '' };
+    });
+    builder.addCase(getResetFilters.rejected, handleRejected);
   },
 });
 

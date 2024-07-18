@@ -1,12 +1,16 @@
 import css from './Filters.module.css';
 import Icon from '../Icon/Icon';
-import { getFilters } from '../../store/camper/operations';
+import Button from '../Button/Button';
+import { getFilters, getResetFilters } from '../../store/camper/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilters } from '../../store/camper/selectors';
+import { useState } from 'react';
 
 const Filters = () => {
   const dispatch = useDispatch();
-  const filters = useSelector(selectFilters);
+  const storedFilters = useSelector(selectFilters);
+  const [filters, setFilters] = useState(storedFilters);
+
   const equipmentFilterIcon = [
     { name: 'airConditioner', icon: 'icon-ac', sign: 'AC' },
     { name: 'transmission', icon: 'icon-engine', sign: 'Automatic' },
@@ -31,6 +35,12 @@ const Filters = () => {
         ? event.target.checked
         : event.target.value;
     dispatch(getFilters({ name, value }));
+    setFilters({ ...filters, [name]: value });
+  };
+
+  const handleResetFilters = () => {
+    dispatch(getResetFilters());
+    setFilters({ location: '' });
   };
 
   return (
@@ -71,8 +81,8 @@ const Filters = () => {
                 name={name}
                 value={name}
                 id={name}
-                defaultChecked={filters[name] ? true : false}
-                onClick={() => handleClick()}
+                checked={filters[name] ? true : false}
+                onChange={() => handleClick()}
               />
               <label htmlFor={name} className={css.filtrInputLabel}>
                 <div className={css.filterInputContent}>
@@ -90,7 +100,7 @@ const Filters = () => {
         </div>
       </div>
 
-      <div className={css.filterBlock}>
+      <div className={[css.filterBlock, css.filterBlockMargin].join(' ')}>
         <p className={css.filterGroup}>Vehicle type</p>
         <div className={css.filters}>
           {formFilterIcon.map(({ value, icon, sign }) => (
@@ -101,8 +111,12 @@ const Filters = () => {
                 name="form"
                 id={`form-${value}`}
                 value={value}
-                defaultChecked={filters['form'] === value ? true : false}
-                onClick={() => handleClick()}
+                checked={
+                  filters['form'] && filters['form'] === value
+                    ? filters['form']
+                    : false
+                }
+                onChange={() => handleClick()}
               />
               <label htmlFor={`form-${value}`} className={css.filtrInputLabel}>
                 <div className={css.filterInputContent}>
@@ -119,6 +133,7 @@ const Filters = () => {
           ))}
         </div>
       </div>
+      <Button handler={handleResetFilters}>Reset</Button>
     </>
   );
 };

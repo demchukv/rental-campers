@@ -37,7 +37,7 @@ function filterCamper(item, filters) {
         : false;
     }
 
-    if (key === 'form') {
+    if (key === 'form' && filters[key] !== '') {
       matchType = item[key] === filters[key] ? true : false;
     }
 
