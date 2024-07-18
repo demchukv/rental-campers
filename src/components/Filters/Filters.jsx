@@ -22,8 +22,9 @@ const Filters = () => {
 
   const handleClick = () => {
     console.log(event.target.checked);
-    console.log(event.target.name);
+    console.log(event.target.value);
   };
+
   return (
     <>
       <div className={css.filterBlock}>
@@ -53,43 +54,56 @@ const Filters = () => {
         <p className={css.filterGroup}>Vehicle equipment</p>
         <div className={css.filters}>
           {equipmentFilterIcon.map(({ name, icon, sign }) => (
-            <label className={css.checkboxButton} key={name}>
-              <input type="checkbox" name="{name}" onClick={handleClick} />
-              <Button style="icon-button">
-                <Icon
-                  width={24}
-                  height={24}
-                  iconName={icon}
-                  styles={css.iconFilter}
-                />
-                <span>{sign}</span>
-              </Button>
-            </label>
+            <div key={name}>
+              <input
+                className={css.filtrInput}
+                type="checkbox"
+                name={name}
+                value={name}
+                id={name}
+                onClick={() => handleClick()}
+              />
+              <label htmlFor={name} className={css.filtrInputLabel}>
+                <div className={css.filterInputContent}>
+                  <Icon
+                    width={24}
+                    height={24}
+                    iconName={icon}
+                    styles={css.iconFilter}
+                  />
+                  <span>{sign}</span>
+                </div>
+              </label>
+            </div>
           ))}
         </div>
       </div>
+
       <div className={css.filterBlock}>
         <p className={css.filterGroup}>Vehicle type</p>
         <div className={css.filters}>
           {typeFilterIcon.map(({ value, icon, sign }) => (
-            <label className={css.checkboxButton} key={value}>
+            <div key={value}>
               <input
+                className={css.filtrInput}
                 type="radio"
                 name="type"
-                id="type{value}"
+                id={`type-${value}`}
                 value={value}
-                onClick={handleClick}
+                onClick={() => handleClick()}
               />
-              <Button style="icon-button">
-                <Icon
-                  width={24}
-                  height={24}
-                  iconName={icon}
-                  styles={css.iconFilter}
-                />
-                <span>{sign}</span>
-              </Button>
-            </label>
+              <label htmlFor={`type-${value}`} className={css.filtrInputLabel}>
+                <div className={css.filterInputContent}>
+                  <Icon
+                    width={24}
+                    height={24}
+                    iconName={icon}
+                    styles={css.iconFilter}
+                  />
+                  <span>{sign}</span>
+                </div>
+              </label>
+            </div>
           ))}
         </div>
       </div>
