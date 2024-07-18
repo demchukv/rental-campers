@@ -24,24 +24,44 @@ export const selectFilteredCampers = createSelector(
 );
 
 function filterCamper(item, filters) {
-  let matchLocation = false;
-  let matchType = false;
-  let matchEquipment = false;
+  let matchLocation = true;
+  let matchType = true;
+  let matchEquipment = true;
+  let noEquipment = true;
   for (var key in filters) {
-    if (
-      key === 'location' &&
-      item[key].toLowerCase().includes(filters[key].toLowerCase())
-    ) {
-      matchLocation = true;
-      console.log(item._id, ' : ', item[key], filters[key], matchLocation);
+    if (key === 'location' && filters[key].length > 2) {
+      matchLocation = item.location
+        .toLowerCase()
+        .includes(filters.location.toLowerCase())
+        ? true
+        : false;
     }
-    if (key === 'form' && item[key] === filters[key]) {
-      matchType = true;
-      console.log(item._id, ' : ', item[key], filters[key], matchType);
+
+    if (key === 'form') {
+      matchType = item[key] === filters[key] ? true : false;
+    }
+
+    if (typeof filters[key] === 'boolean' && filters[key] === true) {
+      if (key === 'kitchen') {
+        matchEquipment = item.details[key] > 0 ? true : false;
+      }
+      if (key === 'airConditioner') {
+        matchEquipment = item.details[key] > 0 ? true : false;
+      }
+      if (key === 'TV') {
+        matchEquipment = item.details[key] > 0 ? true : false;
+      }
+      if (key === 'shower') {
+        matchEquipment =
+          item.details[key] > 0 && item.details.toilet > 0 ? true : false;
+      }
+      if (key === 'transmission') {
+        matchEquipment = item[key] === 'automatic' ? true : false;
+      }
+      noEquipment = false;
     }
   }
-  if (matchLocation === true && matchType === true) {
-    console.log('match to filters');
-  }
-  return matchLocation === true && matchType === true ? true : false;
+  return matchLocation && matchType && (noEquipment || matchEquipment)
+    ? true
+    : false;
 }

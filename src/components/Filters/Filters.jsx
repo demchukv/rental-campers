@@ -14,7 +14,7 @@ const Filters = () => {
     { name: 'TV', icon: 'icon-tv', sign: 'TV' },
     { name: 'shower', icon: 'icon-shower', sign: 'Shower/WC' },
   ];
-  const typeFilterIcon = [
+  const formFilterIcon = [
     { value: 'panelTruck', icon: 'icon-paneltruck', sign: 'Van' },
     {
       value: 'fullyIntegrated',
@@ -93,7 +93,7 @@ const Filters = () => {
       <div className={css.filterBlock}>
         <p className={css.filterGroup}>Vehicle type</p>
         <div className={css.filters}>
-          {typeFilterIcon.map(({ value, icon, sign }) => (
+          {formFilterIcon.map(({ value, icon, sign }) => (
             <div key={value}>
               <input
                 className={css.filtrInput}
