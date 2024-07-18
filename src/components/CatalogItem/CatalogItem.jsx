@@ -5,11 +5,13 @@ import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import { firstToUpper } from '../../helpers/string';
 import { getFavorites } from '../../store/camper/operations';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFavorites } from '../../store/camper/selectors';
 
 const CatalogItem = props => {
   const dispatch = useDispatch();
   const price = Number(props.price).toFixed(2);
+  const favorites = useSelector(selectFavorites);
 
   const onClickFavorite = () => {
     dispatch(getFavorites(props._id));
@@ -37,12 +39,21 @@ const CatalogItem = props => {
                   onClickFavorite();
                 }}
               >
-                <Icon
-                  width={24}
-                  height={24}
-                  iconName="icon-heart-def"
-                  styles={css.iconFavorite}
-                />
+                {favorites && favorites.includes(props._id) ? (
+                  <Icon
+                    width={24}
+                    height={24}
+                    iconName="icon-heart-pressed"
+                    styles={css.iconFavorite}
+                  />
+                ) : (
+                  <Icon
+                    width={24}
+                    height={24}
+                    iconName="icon-heart-def"
+                    styles={css.iconFavorite}
+                  />
+                )}
               </button>
             </div>
           </div>
