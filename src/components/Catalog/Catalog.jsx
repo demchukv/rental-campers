@@ -36,11 +36,16 @@ const Catalog = () => {
     <>
       {!isError && !isLoading && (
         <>
-          <ul className={css.catalogList}>
-            {visibleItems.map(camper => (
-              <CatalogItem key={camper._id} {...camper} />
-            ))}
-          </ul>
+          {visibleItems.length > 0 && (
+            <ul className={css.catalogList}>
+              {visibleItems.map(camper => (
+                <CatalogItem key={camper._id} {...camper} />
+              ))}
+            </ul>
+          )}
+          {visibleItems.length === 0 && (
+            <div className="errorMessage">No campers found</div>
+          )}
           {showLoadMore && (
             <div className={css.loadBtn}>
               <Button style="outlined" handler={handleLoadMore}>

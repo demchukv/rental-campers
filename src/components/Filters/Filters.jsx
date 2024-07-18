@@ -98,13 +98,13 @@ const Filters = () => {
               <input
                 className={css.filtrInput}
                 type="radio"
-                name="type"
-                id={`type-${value}`}
+                name="form"
+                id={`form-${value}`}
                 value={value}
-                defaultChecked={filters['type'] === value ? true : false}
+                defaultChecked={filters['form'] === value ? true : false}
                 onClick={() => handleClick()}
               />
-              <label htmlFor={`type-${value}`} className={css.filtrInputLabel}>
+              <label htmlFor={`form-${value}`} className={css.filtrInputLabel}>
                 <div className={css.filterInputContent}>
                   <Icon
                     width={24}
