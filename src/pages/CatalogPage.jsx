@@ -12,14 +12,14 @@ const CatalogPage = () => {
   });
 
   return (
-    <div className={css.catalogPage}>
+    <main className={css.catalogPage}>
       <section className={css.filtersBlock}>
         <Filters />
       </section>
       <section className={css.catalogBlock}>
         <Catalog />
       </section>
-    </div>
+    </main>
   );
 };
 
