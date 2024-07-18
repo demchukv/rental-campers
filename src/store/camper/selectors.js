@@ -42,7 +42,7 @@ function filterCamper(item, filters) {
     }
 
     if (typeof filters[key] === 'boolean' && filters[key] === true) {
-      if (key === 'kitchen') {
+      if (key === 'kitchen' && matchEquipment) {
         matchEquipment = item.details[key] > 0 ? true : false;
       }
       if (key === 'airConditioner' && matchEquipment) {

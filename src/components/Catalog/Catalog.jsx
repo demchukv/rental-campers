@@ -31,7 +31,7 @@ const Catalog = () => {
   const handleLoadMore = () => {
     setPage(prev => prev + 1);
   };
-
+  console.log(visibleItems.length);
   return (
     <>
       {!isError && !isLoading && (
