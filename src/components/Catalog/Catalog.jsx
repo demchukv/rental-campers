@@ -1,6 +1,6 @@
-import css from './Catalog.module.css';
+import { useState, useEffect } from 'react';
 import {
-  selectCampers,
+  selectFilteredCampers,
   selectIsLoading,
   selectIsError,
 } from '../../store/camper/selectors';
@@ -8,22 +8,40 @@ import { useSelector } from 'react-redux';
 import CatalogItem from '../CatalogItem/CatalogItem';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
+import css from './Catalog.module.css';
 
 const Catalog = () => {
-  const campersList = useSelector(selectCampers);
+  const LIMIT = 4;
+  const campersList = useSelector(selectFilteredCampers);
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
+  const [showLoadMore, setShowLoadMore] = useState(false);
+  const [page, setPage] = useState(1);
 
   const handleFavorite = _id => {
     console.log(_id);
   };
 
+  const visibleItems = campersList.slice(0, LIMIT * page);
+
+  useEffect(() => {
+    if (campersList.length > LIMIT * page) {
+      setShowLoadMore(true);
+    } else {
+      setShowLoadMore(false);
+    }
+  }, [campersList, page]);
+
+  const handleLoadMore = () => {
+    setPage(prev => prev + 1);
+  };
+
   return (
     <>
       {!isError && !isLoading && (
-        <section className={css.catalogBlock}>
+        <>
           <ul className={css.catalogList}>
-            {campersList.map(camper => (
+            {visibleItems.map(camper => (
               <CatalogItem
                 key={camper._id}
                 {...camper}
@@ -31,10 +49,14 @@ const Catalog = () => {
               />
             ))}
           </ul>
-          <div className={css.loadBtn}>
-            <Button style="outlined">Load more</Button>
-          </div>
-        </section>
+          {showLoadMore && (
+            <div className={css.loadBtn}>
+              <Button style="outlined" handler={handleLoadMore}>
+                Load more
+              </Button>
+            </div>
+          )}
+        </>
       )}
       {isError && (
         <div className="errorMessage">

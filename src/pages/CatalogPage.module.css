@@ -5,3 +5,11 @@
   align-items: flex-start;
   gap: 64px;
 }
+
+.catalogBlock {
+  width: 888px;
+}
+
+.filtersBlock {
+  width: 360px;
+}

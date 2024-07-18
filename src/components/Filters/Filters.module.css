@@ -1,3 +1,14 @@
-.filtersBlock {
-  width: 360px;
+/* Стилі для кнопок-чекбоксів */
+.checkboxButton {
+  display: inline-block;
+}
+
+.checkboxButton.checked {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Сховати оригінальний чекбокс */
+input[type='checkbox'] {
+  display: none;
 }

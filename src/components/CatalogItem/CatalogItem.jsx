@@ -8,8 +8,8 @@ import { firstToUpper } from '../../helpers/string';
 const CatalogItem = props => {
   const price = Number(props.price).toFixed(2);
 
-  const onClickFavorite = () => {
-    props.handleFavorite(props._id);
+  const onClickFavorite = _id => {
+    props.handleFavorite(_id);
     console.log(event.target);
   };
 
@@ -32,7 +32,7 @@ const CatalogItem = props => {
                 type="button"
                 className={css.favoriteButton}
                 onClick={() => {
-                  onClickFavorite();
+                  onClickFavorite(props._id);
                 }}
               >
                 <Icon
