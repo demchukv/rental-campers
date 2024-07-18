@@ -1,8 +1,12 @@
 import css from './Filters.module.css';
 import Icon from '../Icon/Icon';
-import Button from '../Button/Button';
+import { getFilters } from '../../store/camper/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectFilters } from '../../store/camper/selectors';
 
 const Filters = () => {
+  const dispatch = useDispatch();
+  const filters = useSelector(selectFilters);
   const equipmentFilterIcon = [
     { name: 'airConditioner', icon: 'icon-ac', sign: 'AC' },
     { name: 'transmission', icon: 'icon-engine', sign: 'Automatic' },
@@ -21,8 +25,12 @@ const Filters = () => {
   ];
 
   const handleClick = () => {
-    console.log(event.target.checked);
-    console.log(event.target.value);
+    const name = event.target.name;
+    const value =
+      event.target.value === event.target.name
+        ? event.target.checked
+        : event.target.value;
+    dispatch(getFilters({ name, value }));
   };
 
   return (
@@ -45,6 +53,8 @@ const Filters = () => {
             placeholder="City"
             className={css.locationInput}
             autoComplete="off"
+            value={filters?.location}
+            onChange={handleClick}
           />
         </div>
       </div>
@@ -61,6 +71,7 @@ const Filters = () => {
                 name={name}
                 value={name}
                 id={name}
+                defaultChecked={filters[name] ? true : false}
                 onClick={() => handleClick()}
               />
               <label htmlFor={name} className={css.filtrInputLabel}>
@@ -90,6 +101,7 @@ const Filters = () => {
                 name="type"
                 id={`type-${value}`}
                 value={value}
+                defaultChecked={filters['type'] === value ? true : false}
                 onClick={() => handleClick()}
               />
               <label htmlFor={`type-${value}`} className={css.filtrInputLabel}>
