@@ -19,13 +19,30 @@ const Features = props => {
         {props.details.beds > 0 && (
           <Badge icon="icon-beds">{props.details.beds} beds</Badge>
         )}
+        {props.details.TV > 0 && <Badge icon="icon-tv">TV</Badge>}
         {props.details.CD > 0 && <Badge icon="icon-cd">CD</Badge>}
         {props.details.radio > 0 && <Badge icon="icon-radio">Radio</Badge>}
         {props.details.hob > 0 && (
           <Badge icon="icon-hob">{props.details.hob} hob</Badge>
         )}
+        {props.details.shower > 0 && (
+          <Badge icon="icon-shower">{props.details.shower} shower</Badge>
+        )}
+        {props.details.toilet > 0 && (
+          <Badge icon="icon-toilet">{props.details.toilet} toilet</Badge>
+        )}
+        {props.details.freezer > 0 && (
+          <Badge icon="icon-freezer">{props.details.freezer} freezer</Badge>
+        )}
+        {props.details.microwave > 0 && (
+          <Badge icon="icon-microwave">
+            {props.details.microwave} microwave
+          </Badge>
+        )}
       </div>
+
       <h3 className={css.detailsTitle}>Vehicle details</h3>
+
       <div className={css.featuresDetails}>
         <div className={css.featuresRow}>
           <div className={css.featuresName}>Form</div>
