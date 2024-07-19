@@ -27,17 +27,20 @@ const BookForm = props => {
 
     return (
       <div className={css.inputIconContainer}>
+        <Icon
+          width={20}
+          height={20}
+          iconName="icon-calendar"
+          styles={css.calendarIcon}
+        />
         <DatePicker
           {...field}
-          showIcon
+          // showIcon
           toggleCalendarOnIconClick
           selected={value}
           onChange={date => setValue(date)}
           className={css.bookField}
           dateFormat={'dd.MM.yyyy'}
-          iconComponent={() => (
-            <Icon width={20} height={20} iconName="icon-calendar" />
-          )}
         />
       </div>
     );
@@ -59,10 +62,11 @@ const BookForm = props => {
           comment: '',
         }}
         validationSchema={bookingSchema}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, { setSubmitting, resetForm }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
             setSubmitting(false);
+            resetForm();
           }, 400);
         }}
       >
