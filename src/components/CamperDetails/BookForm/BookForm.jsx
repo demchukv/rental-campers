@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
-import { Formik } from 'formik';
+import { Formik, useField } from 'formik';
 import * as Yup from 'yup';
 import Button from '../../Button/Button';
+import Icon from '../../Icon/Icon';
+import DatePicker from 'react-datepicker';
+import './BookFormCalendar.css';
 import css from './BookForm.module.css';
 
 const bookingSchema = Yup.object().shape({
@@ -16,6 +19,30 @@ const bookingSchema = Yup.object().shape({
 });
 
 const BookForm = props => {
+  const MyDatePicker = ({ name = '' }) => {
+    const [field, meta, helpers] = useField(name);
+
+    const { value } = meta;
+    const { setValue } = helpers;
+
+    return (
+      <div className={css.inputIconContainer}>
+        <DatePicker
+          {...field}
+          showIcon
+          toggleCalendarOnIconClick
+          selected={value}
+          onChange={date => setValue(date)}
+          className={css.bookField}
+          dateFormat={'dd.MM.yyyy'}
+          iconComponent={() => (
+            <Icon width={20} height={20} iconName="icon-calendar" />
+          )}
+        />
+      </div>
+    );
+  };
+
   return (
     <div className={css.bookFormArea}>
       <h2 className={css.bookTitle}>Book your campevan now</h2>
@@ -28,7 +55,7 @@ const BookForm = props => {
           id: props._id,
           name: '',
           email: '',
-          date: '',
+          date: new Date(),
           comment: '',
         }}
         validationSchema={bookingSchema}
@@ -79,7 +106,9 @@ const BookForm = props => {
               )}
             </div>
             <div className={css.fieldContainer}>
-              <input
+              <MyDatePicker name="date" />
+
+              {/* <input
                 type="date"
                 name="date"
                 placeholder="Booking date"
@@ -87,7 +116,7 @@ const BookForm = props => {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.date}
-              />
+              /> */}
               {errors.date && touched.date && (
                 <span className={css.inputError}>{errors.date}</span>
               )}
@@ -120,4 +149,5 @@ export default BookForm;
 
 BookForm.propTypes = {
   _id: PropTypes.string,
+  name: PropTypes.string,
 };

@@ -53,3 +53,14 @@
   color: var(--color-btn);
   font-size: 12px;
 }
+.inputIconContainer {
+  position: relative;
+}
+.calendarIcon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 1;
+}
