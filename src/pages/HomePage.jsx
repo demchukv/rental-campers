@@ -1,4 +1,4 @@
-import img from '../assets/campers.jpg';
+import img from '../assets/campers1.jpg';
 import css from './HomePage.module.css';
 
 const HomePage = () => {
