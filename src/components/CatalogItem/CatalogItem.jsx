@@ -92,7 +92,12 @@ const CatalogItem = props => {
           <Badge icon="icon-beds">2 beds</Badge>
           <Badge icon="icon-ac">AC</Badge>
         </div>
-        <Button style="primary">Show more</Button>
+        <Button
+          style="primary"
+          handler={() => props.handleOpenModal(props._id)}
+        >
+          Show more
+        </Button>
       </div>
     </div>
   );
@@ -112,4 +117,5 @@ CatalogItem.propTypes = {
   engine: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
   _id: PropTypes.string.isRequired,
+  handleOpenModal: PropTypes.func.isRequired,
 };

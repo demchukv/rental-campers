@@ -1,0 +1,45 @@
+.modal {
+  position: relative;
+  background-color: var(--color-page-bg);
+  margin: 40px;
+  padding: 40px;
+  border-radius: 20px;
+  width: 982px;
+  max-height: 100vh;
+}
+
+.overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  z-index: 999;
+  background-color: rgba(47, 47, 47, 0.6);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  outline: none;
+}
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  fill: var(--color-text);
+}
+.modalContent {
+  max-height: 100vh;
+  overflow-y: auto;
+}

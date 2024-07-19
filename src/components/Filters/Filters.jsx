@@ -1,14 +1,16 @@
 import css from './Filters.module.css';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
+import Loader from '../Loader/Loader';
 import { getFilters, getResetFilters } from '../../store/camper/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilters } from '../../store/camper/selectors';
+import { selectFilters, selectIsLoading } from '../../store/camper/selectors';
 import { useState } from 'react';
 
 const Filters = () => {
   const dispatch = useDispatch();
   const storedFilters = useSelector(selectFilters);
+  const isLoading = useSelector(selectIsLoading);
   const [filters, setFilters] = useState(storedFilters);
 
   const equipmentFilterIcon = [
@@ -134,6 +136,7 @@ const Filters = () => {
         </div>
       </div>
       <Button handler={handleResetFilters}>Reset</Button>
+      {isLoading && <Loader />}
     </>
   );
 };

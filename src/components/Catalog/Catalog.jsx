@@ -5,6 +5,8 @@ import {
   selectIsError,
 } from '../../store/camper/selectors';
 import { useSelector } from 'react-redux';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import CamperDetails from '../CamperDetails/CamperDetails';
 import CatalogItem from '../CatalogItem/CatalogItem';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
@@ -17,6 +19,8 @@ const Catalog = () => {
   const isError = useSelector(selectIsError);
   const [showLoadMore, setShowLoadMore] = useState(false);
   const [page, setPage] = useState(1);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [modalData, setModalData] = useState({});
 
   const visibleItems = campersList.slice(0, LIMIT * page);
 
@@ -31,7 +35,17 @@ const Catalog = () => {
   const handleLoadMore = () => {
     setPage(prev => prev + 1);
   };
-  console.log(visibleItems.length);
+  const handleOpenModal = _id => {
+    setModalData(visibleItems.filter(camper => camper._id === _id)[0]);
+    openModal();
+  };
+  const openModal = () => {
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
+
   return (
     <>
       {!isError && !isLoading && (
@@ -39,7 +53,11 @@ const Catalog = () => {
           {visibleItems.length > 0 && (
             <ul className={css.catalogList}>
               {visibleItems.map(camper => (
-                <CatalogItem key={camper._id} {...camper} />
+                <CatalogItem
+                  key={camper._id}
+                  {...camper}
+                  handleOpenModal={handleOpenModal}
+                />
               ))}
             </ul>
           )}
@@ -61,6 +79,9 @@ const Catalog = () => {
         </div>
       )}
       {isLoading && <Loader />}
+      <ModalWindow isOpen={modalIsOpen} closeModal={closeModal}>
+        <CamperDetails {...modalData} />
+      </ModalWindow>
     </>
   );
 };
