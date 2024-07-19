@@ -84,17 +84,24 @@
   display: flex;
   flex-direction: row;
   gap: 40px;
+}
+
+.camperTabPanelLink,
+.camperTabPanelLink:hover,
+.camperTabPanelLink:focus,
+.camperTabPanelLink:active {
+  display: block;
+  padding-bottom: 24px;
+  margin-bottom: -2.5px;
 
   font-weight: 600;
   font-size: 20px;
   line-height: 1.2;
   color: var(--color-text);
+  text-decoration: none;
+  transition: border-bottom 0.25s ease-in-out;
 }
-.camperTabsItem {
-  padding-bottom: 24px;
-  margin-bottom: -2.5px;
-}
-.camperTabsItemActive {
+.camperTabPanelLinkActive {
   border-bottom: 5px solid var(--color-btn);
 }
 

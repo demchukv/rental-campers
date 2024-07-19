@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 import Icon from '../Icon/Icon';
 import BookForm from './BookForm/BookForm';
 import Reviews from './Reviews/Reviews';
@@ -6,7 +7,23 @@ import Features from './Features/Features';
 import css from './CamperDetails.module.css';
 
 const CamperDetails = props => {
+  const [visiblePanel, setVisiblePanel] = useState('features');
+  const [tabLinkClass, setTabLinkClass] = useState({
+    features: [css.camperTabPanelLink, css.camperTabPanelLinkActive].join(' '),
+    reviews: css.camperTabPanelLink,
+  });
   const price = Number(props.price).toFixed(2);
+
+  const switchToTab = tab => {
+    tab;
+    setTabLinkClass({
+      features: css.camperTabPanelLink,
+      reviews: css.camperTabPanelLink,
+      [tab]: [tabLinkClass[tab], css.camperTabPanelLinkActive].join(' '),
+    });
+    setVisiblePanel(tab);
+  };
+
   return (
     <>
       <div className={css.camperHeader}>
@@ -54,23 +71,31 @@ const CamperDetails = props => {
           <div className={css.camperDescription}>{props.description}</div>
           <div className={css.camperTabsSwitch}>
             <ul className={css.camperTabsList}>
-              <li
-                className={[css.camperTabsItem, css.camperTabsItemActive].join(
-                  ' '
-                )}
-              >
-                Features
+              <li className={css.camperTabsItem}>
+                <a
+                  className={tabLinkClass.features}
+                  href="#features"
+                  onClick={() => switchToTab('features')}
+                >
+                  Features
+                </a>
               </li>
-              <li className={css.camperTabsItem}>Reviews</li>
+              <li className={css.camperTabsItem}>
+                <a
+                  className={tabLinkClass.reviews}
+                  href="#reviews"
+                  onClick={() => switchToTab('reviews')}
+                >
+                  Reviews
+                </a>
+              </li>
             </ul>
           </div>
           <div className={css.camperTabsContent}>
             <div className={css.camperTabsPanels}>
               <div className={css.camperTabPanel} id="features">
-                <Features {...props} />
-              </div>
-              <div className={css.camperTabPanel} id="reviews">
-                <Reviews {...props} />
+                {visiblePanel === 'features' && <Features {...props} />}
+                {visiblePanel === 'reviews' && <Reviews {...props} />}
               </div>
             </div>
             <div className={css.camperFormArea}>
