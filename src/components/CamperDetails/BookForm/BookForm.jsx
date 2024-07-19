@@ -56,7 +56,9 @@ const BookForm = props => {
                 onBlur={handleBlur}
                 value={values.name}
               />
-              {errors.name && touched.name && errors.name}
+              {errors.name && touched.name && (
+                <span className={css.inputError}>{errors.name}</span>
+              )}
             </div>
             <div className={css.fieldContainer}>
               <input
@@ -68,7 +70,9 @@ const BookForm = props => {
                 onBlur={handleBlur}
                 value={values.email}
               />
-              {errors.email && touched.email && errors.email}
+              {errors.email && touched.email && (
+                <span className={css.inputError}>{errors.email}</span>
+              )}
             </div>
             <div className={css.fieldContainer}>
               <input
@@ -80,19 +84,23 @@ const BookForm = props => {
                 onBlur={handleBlur}
                 value={values.date}
               />
-              {errors.date && touched.date && errors.date}
+              {errors.date && touched.date && (
+                <span className={css.inputError}>{errors.date}</span>
+              )}
             </div>
             <div className={css.fieldContainer}>
               <textarea
                 type="comment"
                 name="comment"
                 placeholder="Comment"
-                className={css.bookField}
+                className={css.bookTextField}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.comment}
               ></textarea>
-              {errors.comment && touched.comment && errors.comment}
+              {errors.comment && touched.comment && (
+                <span className={css.inputError}>{errors.comment}</span>
+              )}
             </div>
             <Button style="primary" type="submit" disabled={isSubmitting}>
               Send
