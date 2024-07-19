@@ -1,125 +1,18 @@
 const HomePage = () => {
   return (
     <>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-      <div>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis ducimus
-        dicta voluptatibus perspiciatis dolorum laboriosam amet quod quam
-        recusandae id? Maxime illum excepturi rerum aperiam et ab, consequatur
-        quod sequi.
-      </div>
-
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>HomePage</div>
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Temporibus
-        modi veritatis esse laudantium suscipit iusto itaque doloribus
-        perferendis incidunt id sunt saepe velit, deleniti fugit dignissimos
-        voluptates quisquam amet assumenda.
-      </div>
-      <div>HomePage</div>
+      <h1>Welcome to Rental-Camper!</h1>
+      <p>
+        We offer comfortable rentals campers for your unforgettable vacation.
+        Our houses on wheels equipped with a kitchen, sleeping unit and heating.
+        You can rent camper from 2 days to several weeks. If you are considering
+        buying a camper, rental is an ideal option for a test drive.
+      </p>
+      <p>
+        We invite you to visit our website: Rental-Camper to find out more about
+        rental terms and our models of campers. We wish you wonderful travels!
+        🚐✨
+      </p>
     </>
   );
 };
