@@ -1,0 +1,40 @@
+.bookFormArea {
+  border: 1px solid rgba(16, 24, 40, 0.2);
+  border-radius: 10px;
+  padding: 24px;
+}
+.bookTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--color-text);
+  margin: 0 0 8px 0;
+  padding: 0;
+}
+.bookText {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text-ligth);
+  margin-bottom: 24px;
+}
+.fieldContainer {
+  margin-bottom: 14px;
+}
+.bookField {
+  border-radius: 10px;
+  padding: 18px;
+  border: none;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-text);
+  width: 100%;
+  background-color: var(--color-field);
+}
+.bookField::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.25;
+  color: rgba(16, 24, 40, 0.6);
+}

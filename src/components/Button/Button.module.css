@@ -20,7 +20,9 @@
 .primary:focus {
   background: var(--color-btn-hover);
 }
-
+.primary:disabled {
+  opacity: 0.6;
+}
 .outlined {
   display: inline-block;
   border-radius: 200px;

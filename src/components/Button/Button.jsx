@@ -5,10 +5,16 @@ const Button = ({
   children,
   style = 'primary',
   type = 'button',
+  disabled = false,
   handler = null,
 }) => {
   return (
-    <button className={css[style]} onClick={handler} type={type}>
+    <button
+      className={css[style]}
+      onClick={handler}
+      type={type}
+      disabled={disabled}
+    >
       {children}
     </button>
   );
@@ -21,4 +27,5 @@ Button.propTypes = {
   style: PropTypes.string,
   handler: PropTypes.func,
   type: PropTypes.string,
+  disabled: PropTypes.bool,
 };
