@@ -1,7 +1,19 @@
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import Button from '../../Button/Button';
 import css from './BookForm.module.css';
+
+const bookingSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, 'Too Short!')
+    .max(50, 'Too Long!')
+    .required('Name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  date: Yup.date()
+    .min(new Date(), 'Date cannot be this early')
+    .required('Date is required'),
+});
 
 const BookForm = props => {
   return (
@@ -12,23 +24,14 @@ const BookForm = props => {
       </p>
 
       <Formik
-        initialValues={{ name: '', email: '', date: '', comment: '' }}
-        validate={values => {
-          const errors = {};
-          if (!values.name.trim() || values.name.length < 2) {
-            errors.name = 'Name is required';
-          }
-          if (!values.email) {
-            errors.email = 'Email is required';
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = 'Invalid email address';
-          }
-          if (!values.date) {
-            errors.date = 'Date is required';
-          } else if (!/^d{4}-d{2}-d{2}$/i.test(values.date)) return errors;
+        initialValues={{
+          id: props._id,
+          name: '',
+          email: '',
+          date: '',
+          comment: '',
         }}
+        validationSchema={bookingSchema}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -46,6 +49,7 @@ const BookForm = props => {
           isSubmitting,
         }) => (
           <form onSubmit={handleSubmit}>
+            <input type="hidden" name="id" value={values.id} />
             <div className={css.fieldContainer}>
               <input
                 type="name"
@@ -115,5 +119,5 @@ const BookForm = props => {
 export default BookForm;
 
 BookForm.propTypes = {
-  name: PropTypes.string,
+  _id: PropTypes.string,
 };
