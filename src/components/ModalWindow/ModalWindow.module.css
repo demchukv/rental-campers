@@ -1,11 +1,11 @@
 .modal {
   position: relative;
   background-color: var(--color-page-bg);
-  margin: 40px;
-  padding: 40px;
   border-radius: 20px;
   width: 982px;
-  max-height: 100vh;
+  padding: 40px 10px 40px 40px;
+  max-height: 96vh;
+  overflow: hidden;
 }
 
 .overlay {
@@ -17,8 +17,6 @@
   position: fixed;
   top: 0;
   left: 0;
-  overflow: hidden;
-  overflow-y: auto;
   z-index: 999;
   background-color: rgba(47, 47, 47, 0.6);
 }
@@ -40,6 +38,6 @@
   fill: var(--color-text);
 }
 .modalContent {
-  max-height: 100vh;
-  overflow-y: auto;
+  height: calc(96vh - 80px);
+  overflow-y: scroll;
 }
