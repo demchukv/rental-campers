@@ -1,24 +1,21 @@
+import PropTypes from 'prop-types';
+import { Formik } from 'formik';
 import css from './Filters.module.css';
 import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
-import { getFilters, getResetFilters } from '../../store/camper/operations';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectFilters, selectIsLoading } from '../../store/camper/selectors';
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectIsLoading } from '../../store/camper/selectors';
 
-const Filters = () => {
-  const dispatch = useDispatch();
-  const storedFilters = useSelector(selectFilters);
+const Filters = ({ setPage, filters, setFilters }) => {
   const isLoading = useSelector(selectIsLoading);
-  const [filters, setFilters] = useState(storedFilters);
 
   const equipmentFilterIcon = [
-    { name: 'airConditioner', icon: 'icon-ac', sign: 'AC' },
+    { name: 'details_airConditioner', icon: 'icon-ac', sign: 'AC' },
     { name: 'transmission', icon: 'icon-engine', sign: 'Automatic' },
-    { name: 'kitchen', icon: 'icon-kitchen', sign: 'Kitchen' },
-    { name: 'TV', icon: 'icon-tv', sign: 'TV' },
-    { name: 'shower', icon: 'icon-shower', sign: 'Shower/WC' },
+    { name: 'details_kitchen', icon: 'icon-kitchen', sign: 'Kitchen' },
+    { name: 'details_TV', icon: 'icon-tv', sign: 'TV' },
+    { name: 'details_shower', icon: 'icon-shower', sign: 'Shower/WC' },
   ];
   const formFilterIcon = [
     { value: 'panelTruck', icon: 'icon-paneltruck', sign: 'Van' },
@@ -30,115 +27,143 @@ const Filters = () => {
     { value: 'alcove', icon: 'icon-alcove', sign: 'Alcove' },
   ];
 
-  const handleClick = () => {
-    const name = event.target.name;
-    const value =
-      event.target.value === event.target.name
-        ? event.target.checked
-        : event.target.value;
-    dispatch(getFilters({ name, value }));
-    setFilters({ ...filters, [name]: value });
-  };
-
   const handleResetFilters = () => {
-    dispatch(getResetFilters());
-    setFilters({ location: '' });
+    setPage(1);
+    setFilters({});
   };
 
   return (
     <>
-      <div className={css.filterBlock}>
-        <label htmlFor="location" className={css.locationLabel}>
-          Location
-        </label>
-        <div className={css.locationIconContainer}>
-          <Icon
-            width={24}
-            height={24}
-            iconName="icon-map-pin"
-            styles={css.iconLocation}
-          />
-          <input
-            type="text"
-            id="location"
-            name="location"
-            placeholder="City"
-            className={css.locationInput}
-            autoComplete="off"
-            value={filters?.location}
-            onChange={handleClick}
-          />
-        </div>
-      </div>
-
-      <div className={css.locationLabel}>Filters</div>
-      <div className={css.filterBlock}>
-        <p className={css.filterGroup}>Vehicle equipment</p>
-        <div className={css.filters}>
-          {equipmentFilterIcon.map(({ name, icon, sign }) => (
-            <div key={name}>
-              <input
-                className={css.filtrInput}
-                type="checkbox"
-                name={name}
-                value={name}
-                id={name}
-                checked={filters[name] ? true : false}
-                onChange={() => handleClick()}
-              />
-              <label htmlFor={name} className={css.filtrInputLabel}>
-                <div className={css.filterInputContent}>
-                  <Icon
-                    width={24}
-                    height={24}
-                    iconName={icon}
-                    styles={css.iconFilter}
-                  />
-                  <span>{sign}</span>
-                </div>
+      <Formik
+        initialValues={{
+          location: '',
+          details_airConditioner: '',
+          transmission: '',
+          details_kitchen: '',
+          details_TV: '',
+          details_shower: '',
+          form: '',
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          console.log(values);
+          setPage(1);
+          setFilters({ ...filters, values });
+          setSubmitting(false);
+        }}
+      >
+        {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+          <form onSubmit={handleSubmit}>
+            <div className={css.filterBlock}>
+              <label htmlFor="location" className={css.locationLabel}>
+                Location
               </label>
+              <div className={css.locationIconContainer}>
+                <Icon
+                  width={24}
+                  height={24}
+                  iconName="icon-map-pin"
+                  styles={css.iconLocation}
+                />
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="City"
+                  className={css.locationInput}
+                  autoComplete="off"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  value={values.name}
+                />
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
 
-      <div className={[css.filterBlock, css.filterBlockMargin].join(' ')}>
-        <p className={css.filterGroup}>Vehicle type</p>
-        <div className={css.filters}>
-          {formFilterIcon.map(({ value, icon, sign }) => (
-            <div key={value}>
-              <input
-                className={css.filtrInput}
-                type="radio"
-                name="form"
-                id={`form-${value}`}
-                value={value}
-                checked={
-                  filters['form'] && filters['form'] === value
-                    ? filters['form']
-                    : false
-                }
-                onChange={() => handleClick()}
-              />
-              <label htmlFor={`form-${value}`} className={css.filtrInputLabel}>
-                <div className={css.filterInputContent}>
-                  <Icon
-                    width={24}
-                    height={24}
-                    iconName={icon}
-                    styles={css.iconFilter}
-                  />
-                  <span>{sign}</span>
-                </div>
-              </label>
+            <div className={css.locationLabel}>Filters</div>
+            <div className={css.filterBlock}>
+              <p className={css.filterGroup}>Vehicle equipment</p>
+              <div className={css.filters}>
+                {equipmentFilterIcon.map(({ name, icon, sign }) => (
+                  <div key={name}>
+                    <input
+                      className={css.filtrInput}
+                      type="checkbox"
+                      name={name}
+                      id={name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={values.name}
+                    />
+                    <label htmlFor={name} className={css.filtrInputLabel}>
+                      <div className={css.filterInputContent}>
+                        <Icon
+                          width={24}
+                          height={24}
+                          iconName={icon}
+                          styles={css.iconFilter}
+                        />
+                        <span>{sign}</span>
+                      </div>
+                    </label>
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-      </div>
-      <Button handler={handleResetFilters}>Reset</Button>
+
+            <div className={[css.filterBlock, css.filterBlockMargin].join(' ')}>
+              <p className={css.filterGroup}>Vehicle type</p>
+              <div className={css.filters}>
+                {formFilterIcon.map(({ value, icon, sign }) => (
+                  <div key={value}>
+                    <input
+                      type="radio"
+                      id={`form-${value}`}
+                      name="form"
+                      className={css.filtrInput}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      value={value}
+                    />
+                    <label
+                      htmlFor={`form-${value}`}
+                      className={css.filtrInputLabel}
+                    >
+                      <div className={css.filterInputContent}>
+                        <Icon
+                          width={24}
+                          height={24}
+                          iconName={icon}
+                          styles={css.iconFilter}
+                        />
+                        <span>{sign}</span>
+                      </div>
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <Button
+              style="primary"
+              type="submit"
+              handler={handleResetFilters}
+              disabled={isSubmitting}
+            >
+              Search
+            </Button>
+            <Button style="outlined" type="reset" handler={handleResetFilters}>
+              Reset
+            </Button>
+          </form>
+        )}
+      </Formik>
       {isLoading && <Loader />}
     </>
   );
 };
 
 export default Filters;
+
+Filters.propTypes = {
+  setPage: PropTypes.func.isRequired,
+  setFilters: PropTypes.func.isRequired,
+  filters: PropTypes.object.isRequired,
+};

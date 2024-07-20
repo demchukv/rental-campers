@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
 import { useState, useEffect } from 'react';
 import {
-  selectFilteredCampers,
+  selectCampers,
+  selectTotalCampers,
   selectIsLoading,
   selectIsError,
 } from '../../store/camper/selectors';
@@ -12,31 +14,28 @@ import Button from '../Button/Button';
 import Loader from '../Loader/Loader';
 import css from './Catalog.module.css';
 
-const Catalog = () => {
-  const LIMIT = 4;
-  const campersList = useSelector(selectFilteredCampers);
+const Catalog = ({ page, limit, setPage }) => {
+  const campersList = useSelector(selectCampers);
+  const totalCampers = useSelector(selectTotalCampers);
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
   const [showLoadMore, setShowLoadMore] = useState(false);
-  const [page, setPage] = useState(1);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  const visibleItems = campersList.slice(0, LIMIT * page);
-
   useEffect(() => {
-    if (campersList.length > LIMIT * page) {
+    if (totalCampers > limit * page) {
       setShowLoadMore(true);
     } else {
       setShowLoadMore(false);
     }
-  }, [campersList, page]);
+  }, [totalCampers, limit, page]);
 
   const handleLoadMore = () => {
     setPage(prev => prev + 1);
   };
   const handleOpenModal = _id => {
-    setModalData(visibleItems.filter(camper => camper._id === _id)[0]);
+    setModalData(campersList.filter(camper => camper._id === _id)[0]);
     openModal();
   };
   const openModal = () => {
@@ -48,11 +47,11 @@ const Catalog = () => {
 
   return (
     <>
-      {!isError && !isLoading && (
+      {!isError && (
         <>
-          {visibleItems.length > 0 && (
+          {campersList.length > 0 && (
             <ul className={css.catalogList}>
-              {visibleItems.map(camper => (
+              {campersList.map(camper => (
                 <CatalogItem
                   key={camper._id}
                   {...camper}
@@ -61,7 +60,7 @@ const Catalog = () => {
               ))}
             </ul>
           )}
-          {visibleItems.length === 0 && (
+          {campersList.length === 0 && (
             <div className="errorMessage">No campers found</div>
           )}
           {showLoadMore && (
@@ -87,3 +86,9 @@ const Catalog = () => {
 };
 
 export default Catalog;
+
+Catalog.propTypes = {
+  page: PropTypes.number.isRequired,
+  limit: PropTypes.number.isRequired,
+  setPage: PropTypes.func.isRequired,
+};

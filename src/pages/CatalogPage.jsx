@@ -1,16 +1,24 @@
 import { Helmet } from 'react-helmet-async';
 import { getCampers } from '../store/camper/operations';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Catalog from '../components/Catalog/Catalog';
 import Filters from '../components/Filters/Filters';
 import css from './CatalogPage.module.css';
 
 const CatalogPage = () => {
+  const limit = 4;
+  const [page, setPage] = useState(1);
+  const [filters, setFilters] = useState({});
+
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getCampers());
-  });
+    const loadData = async () => {
+      await dispatch(getCampers({ page, limit, ...filters.values }));
+    };
+    loadData();
+  }, [page, limit, filters, dispatch]);
 
   return (
     <>
@@ -27,10 +35,14 @@ const CatalogPage = () => {
       </Helmet>
       <main className={css.catalogPage}>
         <section className={css.filtersBlock}>
-          <Filters />
+          <Filters
+            setPage={setPage}
+            filters={filters}
+            setFilters={setFilters}
+          />
         </section>
         <section className={css.catalogBlock}>
-          <Catalog />
+          <Catalog page={page} limit={limit} setPage={setPage} />
         </section>
       </main>
     </>

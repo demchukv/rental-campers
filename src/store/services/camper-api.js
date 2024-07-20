@@ -1,6 +1,6 @@
 import { instance } from './instance';
 
-export const requestCampers = async () => {
-  const { data } = await instance.get('/advert');
-  return data;
+export const requestCampers = async requestData => {
+  const res = await instance.get('/advert', { params: requestData });
+  return res.data;
 };

@@ -1,14 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  getCampers,
-  getFavorites,
-  getFilters,
-  getResetFilters,
-} from './operations.js';
+import { getCampers, getFavorites } from './operations.js';
 
 const initialState = {
   campers: [],
-  filters: {},
+  totalCampers: 0,
   favorites: [],
   isLoading: false,
   isError: null,
@@ -32,14 +27,21 @@ const camperSlice = createSlice({
     },
   },
   extraReducers: builder => {
+    // set paginated and filtered list
     builder.addCase(getCampers.pending, handlePending);
     builder.addCase(getCampers.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = null;
-      state.campers = action.payload;
+      if (action.meta.arg.page === 1) {
+        state.campers = action.payload.data;
+      } else {
+        state.campers = [...state.campers, ...action.payload.data];
+      }
+      state.totalCampers = action.payload.total;
     });
     builder.addCase(getCampers.rejected, handleRejected);
 
+    //set favorites
     builder.addCase(getFavorites.pending, handlePending);
     builder.addCase(getFavorites.fulfilled, (state, action) => {
       state.isLoading = false;
@@ -53,25 +55,6 @@ const camperSlice = createSlice({
       }
     });
     builder.addCase(getFavorites.rejected, handleRejected);
-
-    builder.addCase(getFilters.pending, handlePending);
-    builder.addCase(getFilters.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.isError = null;
-      state.filters = {
-        ...state.filters,
-        [action.payload.name]: action.payload.value,
-      };
-    });
-    builder.addCase(getFilters.rejected, handleRejected);
-
-    builder.addCase(getResetFilters.pending, handlePending);
-    builder.addCase(getResetFilters.fulfilled, state => {
-      state.isLoading = false;
-      state.isError = null;
-      state.filters = { location: '' };
-    });
-    builder.addCase(getResetFilters.rejected, handleRejected);
   },
 });
 
