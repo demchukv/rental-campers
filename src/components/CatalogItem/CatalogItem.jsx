@@ -8,13 +8,14 @@ import { getFavorites } from '../../store/camper/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorites } from '../../store/camper/selectors';
 
-const CatalogItem = props => {
+const CatalogItem = ({ props, handleOpenModal }) => {
+  console.log(props);
   const dispatch = useDispatch();
   const price = Number(props.price).toFixed(2);
   const favorites = useSelector(selectFavorites);
 
   const onClickFavorite = () => {
-    dispatch(getFavorites(props._id));
+    dispatch(getFavorites(props));
   };
 
   return (
@@ -39,7 +40,7 @@ const CatalogItem = props => {
                   onClickFavorite();
                 }}
               >
-                {favorites && favorites.includes(props._id) ? (
+                {favorites && favorites.find(item => item._id === props._id) ? (
                   <Icon
                     width={24}
                     height={24}
@@ -92,10 +93,7 @@ const CatalogItem = props => {
           <Badge icon="icon-beds">2 beds</Badge>
           <Badge icon="icon-ac">AC</Badge>
         </div>
-        <Button
-          style="primary"
-          handler={() => props.handleOpenModal(props._id)}
-        >
+        <Button style="primary" handler={() => handleOpenModal(props._id)}>
           Show more
         </Button>
       </div>
@@ -106,16 +104,17 @@ const CatalogItem = props => {
 export default CatalogItem;
 
 CatalogItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  gallery: PropTypes.arrayOf(PropTypes.string).isRequired,
+  props: PropTypes.objectOf(PropTypes.any).isRequired,
+  _id: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  reviews: PropTypes.array.isRequired,
-  adults: PropTypes.number.isRequired,
   transmission: PropTypes.string.isRequired,
+  adults: PropTypes.number.isRequired,
   engine: PropTypes.string.isRequired,
   price: PropTypes.number.isRequired,
-  _id: PropTypes.string.isRequired,
+  gallery: PropTypes.arrayOf(PropTypes.string).isRequired,
+  name: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
+  reviews: PropTypes.array.isRequired,
   handleOpenModal: PropTypes.func.isRequired,
 };

@@ -1,16 +1,8 @@
 import { Helmet } from 'react-helmet-async';
-import { getCampers } from '../store/camper/operations';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import Favorites from '../components/Favorites/Favorites';
 import css from './FavoritesPage.module.css';
 
 const FavoritesPage = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getCampers());
-  });
-
   return (
     <>
       <Helmet>

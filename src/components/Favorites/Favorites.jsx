@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import {
-  selectCampers,
   selectFavorites,
   selectIsLoading,
   selectIsError,
@@ -13,16 +12,12 @@ import Loader from '../Loader/Loader';
 import css from './Favorites.module.css';
 
 const Favorites = () => {
-  const campersList = useSelector(selectCampers);
-  const favorites = useSelector(selectFavorites);
+  const favoriteList = useSelector(selectFavorites);
   const isLoading = useSelector(selectIsLoading);
   const isError = useSelector(selectIsError);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modalData, setModalData] = useState({});
 
-  const favoriteList = campersList.filter(camper =>
-    favorites.includes(camper._id)
-  );
   const handleOpenModal = _id => {
     setModalData(favoriteList.filter(camper => camper._id === _id)[0]);
     openModal();
@@ -43,7 +38,7 @@ const Favorites = () => {
               {favoriteList.map(camper => (
                 <CatalogItem
                   key={camper._id}
-                  {...camper}
+                  props={camper}
                   handleOpenModal={handleOpenModal}
                 />
               ))}

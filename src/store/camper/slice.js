@@ -46,12 +46,17 @@ const camperSlice = createSlice({
     builder.addCase(getFavorites.fulfilled, (state, action) => {
       state.isLoading = false;
       state.isError = null;
-      if (state.favorites.includes(action.payload)) {
+      const index = state.favorites.find(
+        item => item._id === action.payload._id
+      );
+      if (index) {
         state.favorites = state.favorites.filter(
-          item => item !== action.payload
+          item => item._id !== action.payload._id
         );
+        console.log('remove from state');
       } else {
         state.favorites.push(action.payload);
+        console.log('add to state');
       }
     });
     builder.addCase(getFavorites.rejected, handleRejected);

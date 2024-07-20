@@ -24,3 +24,4 @@ dist-ssr
 *.sw?
 
 campers.json
+campers_for_mongodb.json

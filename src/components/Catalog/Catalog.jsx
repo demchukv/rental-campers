@@ -54,7 +54,7 @@ const Catalog = ({ page, limit, setPage }) => {
               {campersList.map(camper => (
                 <CatalogItem
                   key={camper._id}
-                  {...camper}
+                  props={camper}
                   handleOpenModal={handleOpenModal}
                 />
               ))}
