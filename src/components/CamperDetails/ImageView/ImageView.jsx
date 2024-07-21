@@ -1,4 +1,6 @@
+import { PropTypes } from 'prop-types';
 import { useState } from 'react';
+import Icon from '../../Icon/Icon';
 import css from './ImageView.module.css';
 
 const ImageView = ({ images, imageIndex }) => {
@@ -24,13 +26,23 @@ const ImageView = ({ images, imageIndex }) => {
       {Array.isArray(images) && images.length > 0 && (
         <div className={css.imageView}>
           <div className={css.back} onClick={showPrevImage}>
-            back
+            <Icon
+              width={20}
+              height={60}
+              iconName="icon-arrow-prev"
+              styles={css.icon}
+            />
           </div>
           <div className={css.imageContainer}>
             <img className={css.image} src={images[currentImage]}></img>
           </div>
           <div className={css.next} onClick={showNextImage}>
-            next
+            <Icon
+              width={46}
+              height={46}
+              iconName="icon-arrow-next"
+              styles={css.icon}
+            />
           </div>
         </div>
       )}
@@ -39,3 +51,8 @@ const ImageView = ({ images, imageIndex }) => {
 };
 
 export default ImageView;
+
+ImageView.propTypes = {
+  images: PropTypes.array,
+  imageIndex: PropTypes.number,
+};

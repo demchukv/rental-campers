@@ -36,6 +36,10 @@
   width: 32px;
   height: 32px;
   fill: var(--color-text);
+  transition: fill 0.25s ease;
+}
+.closeBtn:hover .closeIcon {
+  fill: var(--color-btn);
 }
 .modalContent {
   height: calc(96vh - 80px);

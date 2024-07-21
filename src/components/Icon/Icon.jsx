@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import sprite from '../../assets/icons/icons.svg?421563';
+import sprite from '../../assets/icons/icons.svg';
 
 const Iconsvg = ({ width, height, iconName, styles }) => {
   return (

@@ -35,7 +35,6 @@ const BookForm = props => {
         />
         <DatePicker
           {...field}
-          // showIcon
           toggleCalendarOnIconClick
           selected={value}
           onChange={date => setValue(date)}
@@ -112,15 +111,6 @@ const BookForm = props => {
             <div className={css.fieldContainer}>
               <MyDatePicker name="date" />
 
-              {/* <input
-                type="date"
-                name="date"
-                placeholder="Booking date"
-                className={css.bookField}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.date}
-              /> */}
               {errors.date && touched.date && (
                 <span className={css.inputError}>{errors.date}</span>
               )}

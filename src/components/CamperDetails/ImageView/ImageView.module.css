@@ -1,11 +1,11 @@
 .imageView {
+  height: 90%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  margin-top: 20px;
-
+  margin-top: 40px;
   position: relative;
 }
 .imageContainer {
@@ -37,4 +37,14 @@
   right: 0;
   text-align: right;
   justify-content: flex-end;
+}
+.icon {
+  width: 46px;
+  height: 46px;
+  fill: var(--color-text);
+  transition: all 0.25s ease-in-out;
+}
+.back:hover .icon,
+.next:hover .icon {
+  fill: var(--color-btn);
 }

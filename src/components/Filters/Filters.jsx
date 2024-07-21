@@ -7,7 +7,7 @@ import Loader from '../Loader/Loader';
 import { useSelector } from 'react-redux';
 import { selectIsLoading } from '../../store/camper/selectors';
 
-const Filters = ({ setPage, filters, setFilters }) => {
+const Filters = ({ setPage, setFilters }) => {
   const isLoading = useSelector(selectIsLoading);
 
   const equipmentFilterIcon = [
@@ -26,39 +26,37 @@ const Filters = ({ setPage, filters, setFilters }) => {
     },
     { value: 'alcove', icon: 'icon-alcove', sign: 'Alcove' },
   ];
+  const initialValues = {
+    location: '',
+    details_airConditioner: false,
+    transmission: false,
+    details_kitchen: false,
+    details_TV: false,
+    details_shower: false,
+    form: '',
+  };
 
   return (
     <>
       <Formik
-        initialValues={{
-          location: '',
-          details_airConditioner: '',
-          transmission: '',
-          details_kitchen: '',
-          details_TV: '',
-          details_shower: '',
-          form: '',
-        }}
+        initialValues={initialValues}
         onSubmit={(values, { setSubmitting }) => {
           setPage(1);
-          setFilters({ ...filters, values });
+          setFilters(prev => ({ ...prev, values }));
           setSubmitting(false);
         }}
-        onReset={values => {
-          values = {};
-          setPage(1);
-          setFilters(values);
-        }}
       >
-        {({
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          handleReset,
-          isSubmitting,
-        }) => (
-          <form onSubmit={handleSubmit} onReset={handleReset}>
+        {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
+          <form
+            onSubmit={handleSubmit}
+            onReset={
+              (values = () => {
+                initialValues;
+                setPage(1);
+                setFilters(initialValues);
+              })
+            }
+          >
             <div className={css.filterBlock}>
               <label htmlFor="location" className={css.locationLabel}>
                 Location
@@ -97,8 +95,6 @@ const Filters = ({ setPage, filters, setFilters }) => {
                       id={name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      value={values.name}
-                      checked={values[name] === '' ? false : true}
                     />
                     <label htmlFor={name} className={css.filtrInputLabel}>
                       <div className={css.filterInputContent}>
@@ -128,7 +124,6 @@ const Filters = ({ setPage, filters, setFilters }) => {
                       className={css.filtrInput}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      checked={values.form !== value ? false : true}
                       value={value}
                     />
                     <label
@@ -170,5 +165,4 @@ export default Filters;
 Filters.propTypes = {
   setPage: PropTypes.func.isRequired,
   setFilters: PropTypes.func.isRequired,
-  filters: PropTypes.object.isRequired,
 };
