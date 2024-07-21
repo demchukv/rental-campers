@@ -9,3 +9,5 @@
 
 Use simple REST API for testing app. Swagger UI available:
 https://rental-campers-api.onrender.com/api-docs
+
+API GIT: https://github.com/demchukv/rental-campers-api
