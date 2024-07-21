@@ -53,10 +53,8 @@ const camperSlice = createSlice({
         state.favorites = state.favorites.filter(
           item => item._id !== action.payload._id
         );
-        console.log('remove from state');
       } else {
         state.favorites.push(action.payload);
-        console.log('add to state');
       }
     });
     builder.addCase(getFavorites.rejected, handleRejected);

@@ -27,11 +27,6 @@ const Filters = ({ setPage, filters, setFilters }) => {
     { value: 'alcove', icon: 'icon-alcove', sign: 'Alcove' },
   ];
 
-  const handleResetFilters = () => {
-    setPage(1);
-    setFilters({});
-  };
-
   return (
     <>
       <Formik
@@ -45,14 +40,25 @@ const Filters = ({ setPage, filters, setFilters }) => {
           form: '',
         }}
         onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
           setPage(1);
           setFilters({ ...filters, values });
           setSubmitting(false);
         }}
+        onReset={values => {
+          values = {};
+          setPage(1);
+          setFilters(values);
+        }}
       >
-        {({ values, handleChange, handleBlur, handleSubmit, isSubmitting }) => (
-          <form onSubmit={handleSubmit}>
+        {({
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          handleReset,
+          isSubmitting,
+        }) => (
+          <form onSubmit={handleSubmit} onReset={handleReset}>
             <div className={css.filterBlock}>
               <label htmlFor="location" className={css.locationLabel}>
                 Location
@@ -73,7 +79,7 @@ const Filters = ({ setPage, filters, setFilters }) => {
                   autoComplete="off"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.name}
+                  value={values.location}
                 />
               </div>
             </div>
@@ -92,6 +98,7 @@ const Filters = ({ setPage, filters, setFilters }) => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values.name}
+                      checked={values[name] === '' ? false : true}
                     />
                     <label htmlFor={name} className={css.filtrInputLabel}>
                       <div className={css.filterInputContent}>
@@ -121,6 +128,7 @@ const Filters = ({ setPage, filters, setFilters }) => {
                       className={css.filtrInput}
                       onChange={handleChange}
                       onBlur={handleBlur}
+                      checked={values.form !== value ? false : true}
                       value={value}
                     />
                     <label
@@ -141,15 +149,10 @@ const Filters = ({ setPage, filters, setFilters }) => {
                 ))}
               </div>
             </div>
-            <Button
-              style="primary"
-              type="submit"
-              handler={handleResetFilters}
-              disabled={isSubmitting}
-            >
+            <Button style="primary" type="submit" disabled={isSubmitting}>
               Search
             </Button>
-            <Button style="outlined" type="reset" handler={handleResetFilters}>
+            <Button style="outlined" type="reset">
               Reset
             </Button>
           </form>

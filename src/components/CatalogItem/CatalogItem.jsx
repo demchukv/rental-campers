@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFavorites } from '../../store/camper/selectors';
 
 const CatalogItem = ({ props, handleOpenModal }) => {
-  console.log(props);
   const dispatch = useDispatch();
   const price = Number(props.price).toFixed(2);
   const favorites = useSelector(selectFavorites);
@@ -105,16 +104,5 @@ export default CatalogItem;
 
 CatalogItem.propTypes = {
   props: PropTypes.objectOf(PropTypes.any).isRequired,
-  _id: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  transmission: PropTypes.string.isRequired,
-  adults: PropTypes.number.isRequired,
-  engine: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  gallery: PropTypes.arrayOf(PropTypes.string).isRequired,
-  name: PropTypes.string.isRequired,
-  rating: PropTypes.number.isRequired,
-  reviews: PropTypes.array.isRequired,
   handleOpenModal: PropTypes.func.isRequired,
 };
