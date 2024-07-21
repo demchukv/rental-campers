@@ -4,6 +4,8 @@ import Icon from '../Icon/Icon';
 import BookForm from './BookForm/BookForm';
 import Reviews from './Reviews/Reviews';
 import Features from './Features/Features';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import ImageView from './ImageView/ImageView';
 import css from './CamperDetails.module.css';
 
 const CamperDetails = props => {
@@ -12,8 +14,16 @@ const CamperDetails = props => {
     features: [css.camperTabPanelLink, css.camperTabPanelLinkActive].join(' '),
     reviews: css.camperTabPanelLink,
   });
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [imageIndex, setImageIndex] = useState(0);
   const price = Number(props.price).toFixed(2);
-
+  const openModal = idx => {
+    setImageIndex(idx);
+    setModalIsOpen(true);
+  };
+  const closeModal = () => {
+    setModalIsOpen(false);
+  };
   const switchToTab = tab => {
     tab;
     setTabLinkClass({
@@ -63,6 +73,7 @@ const CamperDetails = props => {
                 className={css.camperImage}
                 width={290}
                 height={310}
+                onClick={() => openModal(idx)}
               />
             </div>
           ))}
@@ -104,6 +115,9 @@ const CamperDetails = props => {
           </div>
         </div>
       </div>
+      <ModalWindow isOpen={modalIsOpen} closeModal={closeModal}>
+        <ImageView images={props.gallery} imageIndex={imageIndex} />
+      </ModalWindow>
     </>
   );
 };

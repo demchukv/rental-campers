@@ -149,12 +149,14 @@ const Filters = ({ setPage, filters, setFilters }) => {
                 ))}
               </div>
             </div>
-            <Button style="primary" type="submit" disabled={isSubmitting}>
-              Search
-            </Button>
-            <Button style="outlined" type="reset">
-              Reset
-            </Button>
+            <div className={css.filterBtns}>
+              <Button style="primary" type="submit" disabled={isSubmitting}>
+                Search
+              </Button>
+              <Button style="outlined" type="reset">
+                Reset
+              </Button>
+            </div>
           </form>
         )}
       </Formik>

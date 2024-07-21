@@ -100,3 +100,9 @@
   display: block;
   text-align: center;
 }
+
+.filterBtns {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
