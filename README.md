@@ -1,8 +1,8 @@
-# Застосунок для компанії, що надає послуги оренди камперів в Україні
+# An application for a company that provides camper van rental services in Ukraine
 
-**Застосунок складається з 3х сторінок:**
+**The application consists of 3 pages:**
 
-- домашня сторінка з загальним описом послуг, що надає компанія
-- сторінка, що містить каталог камперів різної комплектації, які користувач може
-  фільтрувати за місцем знаходження, обладнанням та типом
-- сторінка з оголошеннями, які були додані користувачем в улюблені
+- home page with a general description of the services provided by the company
+- a page containing a catalog of campers of various configurations, which the
+  user can filter by location, equipment and type
+- page with ads that have been added to favorites by the user
